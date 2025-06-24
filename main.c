@@ -92,6 +92,19 @@ void printDirectory() {
 }
 
 
+void freeDirectory() { 
+    for (int i = 0; i < Max_Students; i++) {
+        Node *current = StudentDirectory[i];
+        while (current != NULL) {
+            Node *temp = current;
+            current = current->collisionptr;
+            free(temp->student);  // Free the student
+            free(temp);           // Free the node
+        }
+    }
+}
+
+
 int main() {
     init(); 
 
@@ -111,7 +124,7 @@ int main() {
     insert(s6);
 
     printDirectory();
-
+freeDirectory();
 
     return 0;
 }
