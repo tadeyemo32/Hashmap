@@ -33,7 +33,7 @@ This is a simple C program that implements a **hash table** for storing student 
 ### 🔧 Compile the code:
 
 ```bash
-gcc -o student_directory main.c
+gcc main.c -o main
 ./main 
 ``` 
 
