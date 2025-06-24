@@ -12,6 +12,7 @@ typedef enum {  // grades
     C,
     D,
     F,
+    empty,
 } Grade;
 
 
@@ -46,6 +47,15 @@ int hash(Student *student) { // simple hash fuction using student name
     return sum % Max_Students;
 }
 
+
+int hashC(char name[20]) { // simple hash fuction using student name
+    int sum = 0;
+    for (int i = 0; name[i] != '\0'; i++) {
+        sum += (int)name[i];
+    }
+    return sum % Max_Students;
+}
+
 Student* createStudent(Grade grade ,char name[20]){ // create student ptr 
 Student *newStudent =   malloc(sizeof(Student));
 newStudent->grade = grade;
@@ -75,6 +85,26 @@ bool insert(Student *s){// insert student
 
 return true;
 }
+
+Grade searchDicrectory(char name[20]) {
+    int index = hashC(name);
+    Node *curr = StudentDirectory[index];
+
+    while (curr != NULL) {
+        if (strcmp(curr->student->name, name) == 0) {
+            printf("Student found Pos: %d\n", index);
+            return curr->student->grade;
+        }
+        curr = curr->collisionptr;
+    }
+
+    printf("Student does not exist\n");
+    return empty;
+}
+
+
+
+
 
 
 void printDirectory() {
@@ -124,7 +154,9 @@ int main() {
     insert(s6);
 
     printDirectory();
+    searchDicrectory("Bruce Wayne");
 freeDirectory();
+
 
     return 0;
 }
