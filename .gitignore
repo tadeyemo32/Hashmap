@@ -1,0 +1,14 @@
+# Compiled files
+*.o
+*.out
+*.exe
+main
+
+# Build directories
+build/
+bin/
+
+# OS/editor files
+.DS_Store
+*.swp
+*~
